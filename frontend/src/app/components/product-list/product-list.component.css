@@ -1,0 +1,14 @@
+.card{
+  margin: 100px;
+  display: flex;
+  justify-content: center;
+}
+.card-title{
+  display: flex;
+  justify-content: center;
+}
+
+.row{
+  display: flex;
+  justify-content: center;
+}

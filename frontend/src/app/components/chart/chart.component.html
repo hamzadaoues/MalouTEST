@@ -1,0 +1,19 @@
+<div>
+  <div *ngIf="!(pieChartData.length == 0)">
+    <div class="chart">
+      <canvas baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"
+              [options]="pieChartOptions"
+              [plugins]="pieChartPlugins"
+              [colors]="pieChartColors">
+      </canvas>
+    </div>
+
+  </div>
+</div>
+
+<div *ngIf="pieChartData.length == 0">
+  <h5>Pas de données pour le moment...</h5>
+</div>

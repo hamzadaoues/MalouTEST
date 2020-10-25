@@ -1,0 +1,78 @@
+<ngx-spinner></ngx-spinner>
+<div class="card">
+
+  <div class="card-body">
+
+    <div class="card-title">
+      <h2> Liste des produits </h2>
+    </div>
+
+    <div class="row">
+      <h6>Sélectionner une date</h6>
+    </div>
+    <div class="row">
+      <input type="datetime-local" [(ngModel)]="date" (change)="getData()">
+    </div>
+    <br>
+
+
+    <div *ngFor="let product of PaginatedproductList" class="d-block d-md-flex podcast-entry bg-white mb-5"
+         data-aos="fade-up">
+      <div class="image">
+        <img src="{{product.imageUrl}}" width="280px" height="250px">
+      </div>
+      <div class="text">
+
+        <h3 class="font-weight-light"><a href="single-post.html">{{product.name}}: {{product.tagline}}
+        </a></h3>
+        <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By {{product.username}} <span
+          class="sep">|</span> {{product.createdAt | date: 'dd/MM/yyyy'}} <span
+          class="sep">|</span> {{product.createdAt | date: 'h:mm:ss a z'}}</small></span></div>
+
+        <div class="text-white mb-3"><span class="text-black-opacity-05"><small>Category: Not specified <span
+          class="sep">|</span>Comments: <b>{{product.commentsCount}}</b> <span
+          class="sep">|</span>Votes <b>{{product.vote}}</b></small></span></div>
+
+        <div class="text-white mb-3">
+          <span class="text-black-opacity-05"><small>Topics:
+            <span *ngFor="let topic of product.topics; let last = last">
+            <span *ngIf="!last">{{topic.name}},</span>
+            <span *ngIf="last">{{topic.name}}.</span>
+            </span>
+          </small></span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container" data-aos="fade-up">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div class="site-block-27">
+            <ul>
+              <li *ngFor="let number of numbers" [class.active]="number === currentPartition"><a href="#"
+                                                                                                 (click)="changePagination(number)">{{number}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <div  class="card-title">
+      <h2> Pie Chart </h2>
+    </div>
+
+    <div *ngIf="!loading">
+      <app-chart [topicsPourcentage]="topicsPourcentage"></app-chart>
+    </div>
+  </div>
+</div>
+
